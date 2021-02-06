@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ARCE: Android remote command executor</title>
+    <link rel="stylesheet" href="https://unpkg.com/terminal.css@0.7.2/dist/terminal.min.css" />
+    <style>
+      .terminal-prompt::before {
+        content: "";
+      }
+      body {
+        color: #e8e9ed;
+        background-color: #222225;
+        margin: 8px;
+      }
+      .terminal h5 {
+        color: #e8e9ed;
+      }
+      .box {
+        display: flex;
+      }
+      input[type=text] {
+        margin-left: 8px;
+        background-color: transparent;
+        border: 0;
+        padding: 0px;
+      }
+      input {
+        color: #e8e9ed;
+        font-style: normal;
+        font-size: 15px;
+        caret-color: #1A95E1;
+      }
+      input[type=text]:focus {
+        border: 0;
+      }
+      caret {
+        border-left: 8px
+      }
+      .tab {
+        display: inline;
+        white-space: pre;
+      }
+    </style>
+    <script language="javascript" type="text/javascript">
+
+    var wsUri = "ws://localhost:8080/ws";
+    var output;
+
+    function init()
+    {
+      output = document.getElementById("output");
+      runWebSocket();
+    }
+
+    function doClose()
+    {
+      websocket.close();
+    }
+
+    function runWebSocket()
+    {
+      websocket = new WebSocket(wsUri);
+      websocket.onopen = function(evt) { onOpen(evt) };
+      websocket.onclose = function(evt) { onClose(evt) };
+      websocket.onmessage = function(evt) { onMessage(evt) };
+      websocket.onerror = function(evt) { onError(evt) };
+    }
+
+    function onOpen(evt)
+    {
+      writeToScreen("Connected");
+      doSend("who Server");
+    }
+
+    function onClose(evt)
+    {
+      writeToScreen("Disconnected");
+    }
+
+    function onMessage(evt)
+    {
+      writeToScreen('<span style="color: #62c4ff;">' + evt.data +'</span>');
+    }
+
+    function onError(evt)
+    {
+      writeToScreen('<span style="color: red;">ERROR: ' + evt.data + '</span>');
+    }
+
+    function doSend(message)
+    {
+      if (message == null) {
+        var cmd = document.getElementById("command").value
+        websocket.send(cmd);
+      } else {
+        websocket.send(message);
+      }
+    }
+
+    function writeToScreen(message)
+    {
+      var pre = document.createElement("span");
+      pre.style.wordWrap = "break-word";
+      pre.innerHTML = message;
+      output.appendChild(pre);
+      var brr = document.createElement("br");
+      output.appendChild(brr);
+
+      window.scrollTo(0,document.body.scrollHeight);
+    }
+
+    function handle(e) {
+        if(e.keyCode === 13) {
+            e.preventDefault();
+
+            doSend();
+
+            var command = document.getElementById("command")
+            writeToScreen('<b>arce~> </b>' + command.value);
+            command.value = "";
+        }
+    }
+
+    window.addEventListener("load", init, false);
+
+  </script>
+  </head>
+  <body class="terminal">
+    <div id="output"></div>
+    <div class="box">
+      <b>arce~></b>
+      <form action="#">
+        <input id="command" type="text" onkeypress="handle(event)" autocomplete="off" onblur="this.focus()" autofocus />
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+rootProject.name = "android-rce"
+include ':arce-app'
+include ':arce-server'
+include ':arce-client'
