@@ -10,12 +10,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers.io
 import org.firezenk.arce_client.WebSocket
-import kotlin.random.Random
 
 class Main : AppCompatActivity(R.layout.activity_main) {
 
     companion object {
-        private const val nickName = "Android"
+        private const val NICKNAME = "Android"
     }
 
     private val webSocket = WebSocket
@@ -25,7 +24,7 @@ class Main : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         disposable = webSocket.listen()
-            .doOnSubscribe { webSocket.send("who $nickName") }
+            .doOnSubscribe { webSocket.send("who $NICKNAME") }
             .subscribeOn(io())
             .observeOn(mainThread())
             .subscribe(
