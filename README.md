@@ -3,6 +3,8 @@
 The idea behind this project is to provide a way to interact with Android apps remotely from a web browser.
 By extending the commads supported in `arce-server` and its interpreter at `arce-app` the posibilities on android interactions are limitless.
 
+![screenshot](https://github.com/FireZenk/arce/blob/main/assets/screenshot_arce.png)
+
 **arce-app**: Sample implementation of ARCE in Android
 
 **arce-client**: Websocket client library for Android
