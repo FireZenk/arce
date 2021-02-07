@@ -61,7 +61,7 @@ fun main(args: Array<String>) {
                                             <br/>
                                             <div class="tab">who [text]     &#9;Defines your nickname</div><br/>
                                             <div class="tab">toast [text]   &#9;Send a special message</div><br/>
-                                            <div class="tab">help           &#9;You already know this one</div>
+                                            <div class="tab">help           &#9;You already know this one</div><br/>
                                             <div class="tab">[text]         &#9;Send the text as chat message</div>
                                         """
                                     ))
