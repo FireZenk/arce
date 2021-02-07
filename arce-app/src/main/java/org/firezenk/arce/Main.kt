@@ -14,6 +14,10 @@ import kotlin.random.Random
 
 class Main : AppCompatActivity(R.layout.activity_main) {
 
+    companion object {
+        private const val nickName = "Android"
+    }
+
     private val webSocket = WebSocket
     private lateinit var disposable: Disposable
 
@@ -21,7 +25,7 @@ class Main : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         disposable = webSocket.listen()
-            .doOnSubscribe { webSocket.send("who Android") }
+            .doOnSubscribe { webSocket.send("who $nickName") }
             .subscribeOn(io())
             .observeOn(mainThread())
             .subscribe(
