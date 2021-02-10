@@ -17,7 +17,7 @@ class Main : AppCompatActivity(R.layout.activity_main) {
         private const val NICKNAME = "Android"
     }
 
-    private val webSocket = WebSocket("192.168.0.12")
+    private val webSocket = WebSocket("http://192.168.0.12:8080/ws")
     private lateinit var disposable: Disposable
 
     override fun onCreate(savedInstanceState: Bundle?) {

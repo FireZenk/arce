@@ -12,7 +12,7 @@ import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
 
-class WebSocket(private val ip: String) : WebSocketListener() {
+class WebSocket(private val url: String) : WebSocketListener() {
 
     private lateinit var broadcaster: FlowableEmitter<String>
     private lateinit var disposable: Disposable
@@ -25,9 +25,7 @@ class WebSocket(private val ip: String) : WebSocketListener() {
             .readTimeout(0, TimeUnit.MILLISECONDS)
             .build()
 
-        val request = Request.Builder()
-            .url("http://$ip:8080/ws")
-            .build()
+        val request = Request.Builder().url(url).build()
 
         webSocket = client.newWebSocket(request, this)
         client.dispatcher.executorService.shutdown()

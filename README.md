@@ -11,7 +11,7 @@ By extending the commads supported in `arce-server` and its interpreter at `arce
 
 ## Configuration
 
-Specify your desktop IP at `arce-app` -> `WebSocket(YOUR_IP_HERE)`
+Specify your desktop URL at `arce-app` -> `WebSocket(YOUR_URL_HERE)`
 
 If you want to change the nickName for your Android device do it at `arce-app` -> `Main.NICKNAME`
 
