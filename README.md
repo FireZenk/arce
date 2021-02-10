@@ -1,5 +1,7 @@
 # ARCE: Android remote command executor
 
+[![](https://jitpack.io/v/FireZenk/arce.svg)](https://jitpack.io/#FireZenk/arce)
+
 The idea behind this project is to provide a way to interact with Android apps remotely from a web browser.
 By extending the commads supported in `arce-server` and its interpreter at `arce-app` the posibilities on android interactions are limitless.
 
